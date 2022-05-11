@@ -27,20 +27,20 @@ Add hours in $h$ format in one of the weeks files
 ARGUMENTS=$1
 WEEK=$2
 ROAD=$3
-CHEMIN=/home/user/Documents/entreprise/horaires-2022-05/horaires-2022-05-$ROAD
+CHEMIN=/home/$USER/horaires-2022-05/horaires-2022-05-$ROAD
 DAY=$4
 
 case $1 in
 	-n | --new) 
 
-		mkdir -p /home/user/Documents/entreprise/horaires-`date +%Y-%m`
+		mkdir -p /home/$USER/horaires-`date +%Y-%m`
 		echo 'Lundi: Mardi: Mercredi: Jeudi: Vendredi: Samedi: Dimanche:' | tr " " "\n" > /home/lucho/Documents/clubvercors/horaires-`date +%Y-%m`/horaires-`date +%Y-%m`-1
 
 		;;
 
 	-w | --new-week)
 
-		new_week=$(echo 'Lundi: Mardi: Mercredi: Jeudi: Vendredi: Samedi: Dimanche:' | tr " " "\n" > /home/lucho/Documents/clubvercors/horaires-`date +%Y-%m`/horaires-`date +%Y-%m`-$WEEK)
+		new_week=$(echo 'Lundi: Mardi: Mercredi: Jeudi: Vendredi: Samedi: Dimanche:' | tr " " "\n" > /home/$USER/horaires-`date +%Y-%m`/horaires-`date +%Y-%m`-$WEEK)
 
 		;;
 
@@ -68,14 +68,14 @@ sudo apt install swaks
 ```bash
 #!/bin/bash
 
-dossier=/home/user/Documents/entreprise/horaires-`date +%Y-%m`
+dossier=/home/$USER/horaires-`date +%Y-%m`
 zip $dossier
-swaks -t <mail of receiver> -s smtp.server:port -tls -au <Auth_Utilisateur> -ap <Auth_Pass> -f <email_sender> --h-Subject "Your_Subject" --attach /home/lucho/Documents/clubvercors/horaires-`date +%Y-%m`.zip
+swaks -t <mail of receiver> -s smtp.server:port -tls -au <Auth_Utilisateur> -ap <Auth_Pass> -f <email_sender> --h-Subject "Your_Subject" --attach /home/$USER/horaires-`date +%Y-%m`.zip
 ```
 
 ### Cron :
 
 Pour un envoie tout les 30 du mois
 ```bash
-00 18 30 * * /home/user/Documents/Script/Bash/mail.sh
+00 18 30 * * /home/$USER/Script/Bash/mail.sh
 ```
